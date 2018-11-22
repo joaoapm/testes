@@ -2,12 +2,12 @@ package jvtst;
 
 import java.util.*;
 
-class Student {
+class Std {
 	private int id;
 	private String fname;
 	private double cgpa;
 
-	public Student(int id, String fname, double cgpa) {
+	public Std(int id, String fname, double cgpa) {
 		super();
 		this.id = id;
 		this.fname = fname;
@@ -31,8 +31,8 @@ class Student {
 class studentComparator implements Comparator {
 	@Override
 	public int compare(Object o1, Object o2) {
-		Student s1 = (Student) o1;
-		Student s2 = (Student) o2;
+		Std s1 = (Std) o1;
+		Std s2 = (Std) o2;
 
 		if (s1.getCgpa() < s2.getCgpa())
 			return 1;
@@ -59,20 +59,20 @@ public class JavaSort {
 		Scanner in = new Scanner(System.in);
 		int testCases = Integer.parseInt(in.nextLine());
 
-		List<Student> studentList = new ArrayList<Student>();
+		List<Std> studentList = new ArrayList<Std>();
 
 		while (testCases > 0) {
 			int id = in.nextInt();
 			String fname = in.next();
 			double cgpa = in.nextDouble();
 
-			Student st = new Student(id, fname, cgpa);
+			Std st = new Std(id, fname, cgpa);
 			studentList.add(st);
 
 			testCases--;
 		}
 		Collections.sort(studentList, new studentComparator());
-		for (Student st : studentList) {
+		for (Std st : studentList) {
 			System.out.println(st.getFname());
 		}
 	}
