@@ -1,3 +1,4 @@
+import Model from "./Model";
 var mongoose = require('mongoose');
 
 export default class DefaultDAO {
@@ -8,55 +9,27 @@ export default class DefaultDAO {
     constructor() {
     }
 
+    static getMangoose() {
+        if (this.mongoose != undefined) {
+            return this.mongoose;
+        } else {
+            return this.getConexao();
+        }
+    }
+
     public static getConexao(): any {
 
         if (this.mongoose != undefined) {
             return this.mongoose;
         } else {
-            mongoose.connect('mongodb://localhost/cadastra');
+            mongoose.connect('mongodb://localhost/cadastra', { useNewUrlParser: true });
 
-            var db = mongoose.connection;
-
-
-            db.on('error', console.error.bind(console, 'connection error:'));
-
-            db.once('open', function () {
+            this.mongoose = mongoose;
+            this.db = mongoose.connection;
+            this.db.on('error', console.error.bind(console, 'connection error:'));
+            this.db.once('open', function () {
                 console.log(`[MONGODB] Connectado`);
-
- 
-
-                // Define schemad
-
- 
-                           
-                var BookSchema = mongoose.Schema({
-                    nome: String,
-                    login: Number,
-                    senha: Number
-                });
-
-
-                var Pessoa = mongoose.model('pessoa', BookSchema, 'pessoa');
-                          
- 
-   
-                var Pessoa1 = new Pessoa({
-                    nome: 'xbbbbxx',
-                    login: 1,
-                    senha: 2
-                });
-
-
-
-                Pessoa1.save(function (err: any, thor: any) {
-                    if (err) return console.error(err);
-                    console.log(thor);
-                });
-
-
-
-
-
+                Model.inicia();
                 return DefaultDAO.mongoose;
             });
         }
