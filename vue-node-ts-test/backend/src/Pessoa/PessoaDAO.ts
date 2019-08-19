@@ -18,7 +18,8 @@ export default class PessoaDAO {
         var novaPessoa = new Model.PessoaModel({
             "nome": pessoa.nome,
             "login": pessoa.login,
-            "senha": pessoa.senha
+            "senha": pessoa.senha,
+            "animais": pessoa.animais
         });
 
         return novaPessoa.save();
