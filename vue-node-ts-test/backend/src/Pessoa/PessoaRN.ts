@@ -1,4 +1,5 @@
 import PessoaDAO from "./PessoaDAO";
+import { sha256 } from 'js-sha256';
 
 export default class PessoaRN {
 
@@ -12,7 +13,8 @@ export default class PessoaRN {
         let listaPessoa = await this.pessoaDAO.lista(pessoa);
 
         if (listaPessoa.length > 0) {
-            pessoaRet = { login: true }
+            sha256(listaPessoa[0].id + listaPessoa[0].nome); 
+            pessoaRet = { login: true, token: sha256.create().hex() }
         } else {
             pessoaRet = { login: false }
         }
@@ -42,6 +44,6 @@ export default class PessoaRN {
 
     async altera(pessoa: any) {
         await this.pessoaDAO.altera(pessoa);
-    } 
+    }
 
 }

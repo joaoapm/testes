@@ -9,13 +9,25 @@
                 <div class="field">
                   <label for class="label">Login</label>
                   <div class="control">
-                    <input type="text" placeholder="Login" class="input" required />
+                    <input
+                      type="text"
+                      placeholder="Login"
+                      class="input"
+                      v-model="usuario.login"
+                      required
+                    />
                   </div>
                 </div>
                 <div class="field">
                   <label for class="label">Password</label>
                   <div class="control">
-                    <input type="password" placeholder="*******" class="input" required />
+                    <input
+                      type="password"
+                      placeholder="*******"
+                      class="input"
+                      v-model="usuario.senha"
+                      required
+                    />
                   </div>
                 </div>
                 <div class="field">
@@ -31,37 +43,27 @@
 </template>
 
 <script>
- 
-import axios from 'axios';
+import { login } from "../services/Pessoa";
+
 export default {
-  name: "app",
+  name: "login",
   data() {
     return {
-      msg: "Hello, World!" 
+      usuario: { login: "joaoapm", senha: "123" }
     };
   },
-  methods : {
-      logar(){
-
-      }
-  },
-   
-  created() {
- 
-
-
-   axios.get(`http://localhost:3000/pessoa`)
-    .then(response => {
-      // JSON responses are automatically parsed.
-     alert(response.data)
-    })
-    .catch(e => {
-      this.errors.push(e)
-    })
-
+  methods: {
+    logar() {
+      login({ login: this.usuario.login, senha: this.usuario.senha })
+        .then(response => {
+          if (response.data.login) this.$router.push("/home");
+        })
+        .catch(e => {
+          this.errors.push(e);
+        });
+    }
   }
-}
- 
+};
 </script>
 
 <style>
