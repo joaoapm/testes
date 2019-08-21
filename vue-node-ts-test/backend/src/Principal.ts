@@ -1,5 +1,5 @@
 import express from "express";
-import PessoaControler from "./Pessoa/PessoaControler"
+import UsuarioControler from "./Usuario/UsuarioControler"
 import DefaultDAO from "./Util/DefaultDAO";
 import ErroHandler from "./Util/ErroHandler";
 import AtendimentoControler from "./Atendimento/AtendimentoControler";
@@ -21,8 +21,9 @@ class Principal {
             console.log(`[SERVER] Running at http://localhost:3000`);
         });
 
-        new PessoaControler(this.server);
+        new UsuarioControler(this.server);
         new AtendimentoControler(this.server);
+        new UsuarioControler(this.server);
 
     }
 

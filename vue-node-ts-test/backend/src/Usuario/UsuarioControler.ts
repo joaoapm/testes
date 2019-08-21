@@ -1,26 +1,26 @@
-import PessoaRN from "./PessoaRN"
+import UsuarioRN from "./UsuarioRN"
 import ErroHandler from "../Util/ErroHandler";
 
-export default class PessoaControler {
+export default class UsuarioControler {
 
-    pessoaRN = new PessoaRN();
+    usuarioRN = new UsuarioRN();
 
     constructor(server: any) {
 
-        server.post("/pessoa/login", (req: any, res: any) => { this.login(res, req) });
-        server.post("/pessoa/", (req: any, res: any) => { this.adiciona(res, req) });
-        server.post("/pessoa/:id", (req: any, res: any) => { this.altera(res, req) });
+        server.post("/usuario/login", (req: any, res: any) => { this.login(res, req) });
+        server.post("/usuario/", (req: any, res: any) => { this.adiciona(res, req) });
+        server.post("/usuario/:id", (req: any, res: any) => { this.altera(res, req) });
 
-        server.get("/pessoa/", (req: any, res: any) => { this.lista(res, req) });
-        server.get("/pessoa/:id", (req: any, res: any) => { this.listaPorId(res, req) });
+        server.get("/usuario/", (req: any, res: any) => { this.lista(res, req) });
+        server.get("/usuario/:id", (req: any, res: any) => { this.listaPorId(res, req) });
 
-        server.delete("/pessoa/:id", (req: any, res: any) => { this.delete(res, req) }); 
+        server.delete("/usuario/:id", (req: any, res: any) => { this.delete(res, req) }); 
 
     }
 
     async login(res: any, req: any) {
         try {
-            res.send(await this.pessoaRN.login(req.body));
+            res.send(await this.usuarioRN.login(req.body));
         } catch (error) {
             ErroHandler.trataErros(error, req, res);
         }
@@ -28,7 +28,7 @@ export default class PessoaControler {
 
     async adiciona(res: any, req: any) {
         try {
-            res.send(await this.pessoaRN.adiciona(req.body));
+            res.send(await this.usuarioRN.adiciona(req.body));
         } catch (error) {
             ErroHandler.trataErros(error, req, res);
         }
@@ -36,7 +36,7 @@ export default class PessoaControler {
 
     async lista(res: any, req: any) {
         try {
-            res.send(await this.pessoaRN.lista(req.body));
+            res.send(await this.usuarioRN.lista(req.body));
         } catch (error) {
             ErroHandler.trataErros(error, req, res);
         }
@@ -44,7 +44,7 @@ export default class PessoaControler {
 
     async listaPorId(res: any, req: any) {
         try {
-            res.send(await this.pessoaRN.listaPorId(req.params.id));
+            res.send(await this.usuarioRN.listaPorId(req.params.id));
         } catch (error) {
             ErroHandler.trataErros(error, req, res);
         }
@@ -53,7 +53,7 @@ export default class PessoaControler {
     async altera(res: any, req: any) {
         try {
             req.body.id = req.params.id;
-            res.send(await this.pessoaRN.altera(req.body));
+            res.send(await this.usuarioRN.altera(req.body));
         } catch (error) {
             ErroHandler.trataErros(error, req, res);
         }
@@ -61,7 +61,7 @@ export default class PessoaControler {
 
     async delete(res: any, req: any) {
         try {
-            res.send(await this.pessoaRN.delete(req.params.id));
+            res.send(await this.usuarioRN.delete(req.params.id));
         } catch (error) {
             ErroHandler.trataErros(error, req, res);
         }

@@ -2,17 +2,20 @@ import DefaultDAO from "./DefaultDAO";
 
 export default class Schemas {
 
-    static PessoaSchema: any;
-    static PessoaModel: any;
+    static UsuarioSchema: any;
+    static UsuarioModel: any;
 
     static AtendimentoSchema: any;
     static AtendimentoModel: any;
+
+    static AnimalSchema: any;
+    static AnimalModel: any;
 
     constructor() { }
 
     static inicia() {
 
-        this.PessoaSchema = DefaultDAO.mongoose.Schema({
+        this.UsuarioSchema = DefaultDAO.mongoose.Schema({
             nome: String,
             login: String,
             senha: String,
@@ -20,13 +23,21 @@ export default class Schemas {
         }); 
 
         this.AtendimentoSchema = DefaultDAO.mongoose.Schema({
-            pessoa: {},
+            usuario: {},
             data: Date,
             tipo: String,            
         }); 
 
-        this.PessoaModel = DefaultDAO.mongoose.model('pessoa', this.PessoaSchema, 'pessoa');
+        this.AnimalSchema = DefaultDAO.mongoose.Schema({
+            idUsuarios: {},
+            dataNascimento: Date,
+            nome: String,   
+            peso: Number         
+        }); 
+
+        this.UsuarioModel = DefaultDAO.mongoose.model('usuario', this.UsuarioSchema, 'usuario');
         this.AtendimentoModel = DefaultDAO.mongoose.model('atendimento', this.AtendimentoSchema, 'atendimento');
+        this.AnimalSchema = DefaultDAO.mongoose.model('animal', this.AnimalSchema, 'animal');
     }
 
 }
