@@ -7,7 +7,7 @@
                     <b-icon  class="is-pulled-right" :icon="props.expanded ? 'menu-down' : 'menu-up'">
                     </b-icon>
                 </template>
-                <b-menu-item icon="account" label="Usuarios"></b-menu-item>
+                <b-menu-item icon="account" label="Animais" tag="router-link" to="/animais"></b-menu-item>
                 <b-menu-item icon="cellphone-link" label="Atendimentos"></b-menu-item> 
             </b-menu-item>
 

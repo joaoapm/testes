@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import { login } from "../services/Pessoa";
+import { login } from "../services/Usuario";
 
 export default {
   name: "login",
