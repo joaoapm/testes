@@ -16,8 +16,9 @@ _global_script_class_icons={
 [application]
 
 config/name="Move and Dodge Game"
+run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
 
 [rendering]
 
-environment/default_environment="res://default_env.tres"
+environment/default_environment="res://new_env.tres"
